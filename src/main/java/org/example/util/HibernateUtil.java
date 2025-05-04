@@ -1,20 +1,26 @@
 package org.example.util;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    private static final SessionFactory sessionFactory;
 
-    private static SessionFactory buildSessionFactory() {
+    static {
         try {
-            return new Configuration().configure().buildSessionFactory();
+            sessionFactory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
-            throw new ExceptionInInitializerError("Falha ao criar SessionFactory: " + ex);
+            System.err.println("Erro ao criar o SessionFactory: " + ex);
+            throw new ExceptionInInitializerError(ex);
         }
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public static Session getSession() {
+        return sessionFactory.openSession();
+    }
+
+    public static void shutdown() {
+        sessionFactory.close();
     }
 }

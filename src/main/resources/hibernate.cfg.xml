@@ -3,27 +3,15 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-
-        <!-- Configuração da conexão -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/banco</property>
         <property name="hibernate.connection.username">user</property>
-        <property name="hibernate.connection.password">password</property>
-
-        <!-- Dialeto do banco -->
+        <property name="hibernate.connection.password">senha</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-
-        <!-- Mostrar SQL no console -->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-
-        <!-- Atualizar estrutura do banco automaticamente -->
         <property name="hibernate.hbm2ddl.auto">update</property>
-
-        <!-- Mapeamento das entidades -->
-        <mapping class="org.example.model.Conta"/>
-        <mapping class="org.example.model.History"/>
-        <mapping class="org.example.model.Pessoas"/>
-
+        <mapping class="org.example.model.Account"/>
+        <mapping class="org.example.model.Customer"/>
     </session-factory>
 </hibernate-configuration>
